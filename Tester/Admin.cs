@@ -41,5 +41,13 @@ namespace Tester
         }
 
         public bool deleteUser(User user) =>userList.Remove(user);
+
+        public User searchUser(User user)
+        {
+            if (!userList.Contains(user))
+                return null;
+
+           return userList.Find(user).Value;
+        }
     }
 }
