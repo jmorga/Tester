@@ -10,7 +10,39 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Caca");
+            var user = new User("Joseph", "Morga", "jmorga", "puta", 23);
+
+            Console.WriteLine(user.ToString());
+
+            user.setFirstName("Cedric");
+            user.setLastName("Miller");
+            user.setPassword("puto");
+            user.setUsername("Ced");
+
+            Console.WriteLine($"\n{user.ToString()}");
+
+            LinkedList<User> list = new LinkedList<User>();
+
+            list.AddFirst(user);
+
+            Console.WriteLine($"\nElements: {list.Count}");
+            Console.WriteLine($"Contains jmorga: {list.Contains(new User("","","jmorga","",0))}");
+            Console.WriteLine($"Contains Ced: {list.Contains(new User("", "", "Ced", "", 0))}");
+            Console.WriteLine($"Contains Ced: {list.Contains(new User("Cedric", "Miller", "Ced", "puto", 23))}");
+
+            var newUser = list.Find(new User("", "", "Ced", "", 0)).Value;
+
+            Console.WriteLine($"\n{newUser.ToString()}");
+
+            list.AddFirst(new User("Joseph", "Morga", "jmorga", "puta", 23));
+
+            Console.WriteLine($"\nElements: {list.Count}");
+            Console.WriteLine($"Contains jmorga: {list.Contains(new User("", "", "jmorga", "", 0))}");
+            Console.WriteLine($"Contains Ced: {list.Contains(new User("", "", "Ced", "", 0))}");
+
+
+
+            Console.ReadLine();
         }
     }
 }

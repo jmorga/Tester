@@ -13,7 +13,6 @@ namespace Tester
         private string username;
         private string password;
         private int age;
-        private char sex;
 
         public Person()
         {
@@ -22,17 +21,15 @@ namespace Tester
             this.username = "";
             this.password = "";
             this.age = 0;
-            this.sex = 'M';
         }
 
-        public Person(string firstName, string lastName, string username, string password, int age, char sex)
+        public Person(string firstName, string lastName, string username, string password, int age)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.username = username;
             this.password = password;
             this.age = age;
-            this.sex = sex;
         }
 
         // ------- Mutator Mathods ------
@@ -42,7 +39,6 @@ namespace Tester
         public void setUsername(string username) { this.username = username; }
         public void setPassword(string password) { this.password = password; }
         public void setAge(int age) { this.age = age; }
-        public void setSex(char sex) { this.sex = sex; }
 
         //------- Accessor Mathods ------
 
@@ -51,6 +47,23 @@ namespace Tester
         public string getPassword() => password;
         public string getUsername() => username;
         public int getAge() => age;
-        public char getSex() => sex;
+
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null) return false;
+
+            return this.username.Equals(((User)obj).getUsername());
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"Name: {this.getFirstName()} {this.getLastName()}\nUsername: {this.getUsername()}\nPassword: {this.getPassword()}\nAge: {this.getAge()}";
+        }
     }
 }

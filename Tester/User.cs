@@ -17,8 +17,8 @@ namespace Tester
             banned = false;
         }
 
-        public User(string firstName, string lastName, string username, string password, int age, char sex)
-            : base(firstName, lastName, username, password, age, sex)
+        public User(string firstName, string lastName, string username, string password, int age)
+            : base(firstName, lastName, username, password, age)
         {
             favoriteList = new LinkedList<Movie>();
             banned = false;
@@ -52,6 +52,5 @@ namespace Tester
         }
 
         public void setBan(bool ban) { this.banned = ban;  }
-
     }
 }
