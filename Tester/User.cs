@@ -39,6 +39,7 @@ namespace Tester
             return true;
         }
 
+        //Deletes all Movie objects in the list
         public void clearFavoriteList() { favoriteList.Clear(); }
 
         public void removeMovie(Movie obj) { favoriteList.Remove(obj); }

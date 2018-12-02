@@ -50,8 +50,6 @@ namespace Tester
             Image = image;
         }
 
-
-
         //public String getTitle()
         //    {
         //        return Title;
