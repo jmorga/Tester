@@ -39,6 +39,8 @@ namespace Tester
             return true;
         }
 
+        public Movie getMovie(Movie movie) => favoriteList.Find(movie).Value;
+
         //Deletes all Movie objects in the list
         public void clearFavoriteList() { favoriteList.Clear(); }
 

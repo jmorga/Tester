@@ -13,7 +13,7 @@ namespace Tester
         public int Length { get; set; }
         public String Genre { get; set; }
         public String Synopsis { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
         public double Rating { get; set; }
         public String Image { get; set; }
 
@@ -25,12 +25,12 @@ namespace Tester
             Length = 0;
             Genre = " No genre yet";
             Synopsis = "No synopsis yet";
-            ReleaseDate = DateTime.Now;
+            ReleaseDate = "Never";
             Rating = 0.0;
         }
 
         public Movie(String title, String director, int length, String genre, String synopsis,
-            DateTime releaseDate, double rating, string image)
+            string releaseDate, double rating, string image)
         {
             Title = title;
             Director = director;
@@ -39,14 +39,6 @@ namespace Tester
             Synopsis = synopsis;
             ReleaseDate = releaseDate;
             Rating = rating;
-            Image = image;
-        }
-
-        public Movie(String title,  int length, String synopsis, string image)
-        {
-            Title = title;
-            Length = length;
-            Synopsis = synopsis;
             Image = image;
         }
 
@@ -107,7 +99,10 @@ namespace Tester
         {
             return base.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return $"Title: {this.Title}\nDirector: {this.Director}\nLength: {this.Length} Genre: {this.Genre}";
+        }
     }
-
-
 }
