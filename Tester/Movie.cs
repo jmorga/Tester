@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tester
+namespace MovieAppStart
 {
-    class Movie :IComparable<Movie>
+    class Movie : IComparable<Movie>
     {
-        public String Title { get; set; }
-        public String Director { get; set; }
-        public int Length { get; set; }
-        public String Genre { get; set; }
-        public String Synopsis { get; set; }
-        public string ReleaseDate { get; set; }
-        public double Rating { get; set; }
-        public String Image { get; set; }
+        private string Title;
+        private String Director;
+        private int Length;
+        private String Genre;
+        private String Synopsis;
+        private string ReleaseDate;
+        private double Rating;
+        private String Image;
 
 
         public Movie()
@@ -42,40 +42,15 @@ namespace Tester
             Image = image;
         }
 
-        //public String getTitle()
-        //    {
-        //        return Title;
-        //    }
+        public string getImage() => Image;
+        public string getTitle() => Title;
+        public int getLength() => Length;
+        public string getDirector() => Director;
+        public string getGenre() => Genre;
+        public string getSynopsis() => Synopsis;
+        public string getReleaseDate() => ReleaseDate;
+        public double getRating() => Rating;
 
-        //    public String getDirector()
-        //    {
-        //        return Director;
-        //    }
-
-        //    public int getLength()
-        //    {
-        //        return Length;
-        //    }
-
-        //    public String getGenre()
-        //    {
-        //        return Genre;
-        //    }
-
-        //    public String getSynopsis()
-        //    {
-        //        return Synopsis;
-        //    }
-
-        //public DateTime getReleaseDate()
-        //{
-        //    return ReleaseDate;
-        //}
-
-        //public double getRating()
-        //{
-        //    return Rating;
-        //}
         public int CompareTo(Movie obj)
         {
             if (obj == null) return 1;
@@ -91,7 +66,7 @@ namespace Tester
             if (this.Title.Equals(((Movie)obj).Title) && this.Director.Equals(((Movie)obj).Director)
                 && this.Length == ((Movie)obj).Length && this.Genre.Equals(((Movie)obj).Genre)
                 && this.ReleaseDate.Equals(((Movie)obj).ReleaseDate)) return true;
-            
+
             return false;
         }
 
