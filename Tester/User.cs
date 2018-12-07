@@ -47,6 +47,8 @@ namespace Tester
 
         public void removeMovie(Movie obj) { favoriteList.Remove(obj); }
 
+        public Movie[] getMovieList() { return favoriteList.ToArray<Movie>(); }
+
         public int CompareTo(User obj)
         {
             if (obj == null)

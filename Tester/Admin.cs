@@ -46,6 +46,8 @@ namespace Tester
 
         public bool deleteUser(User user) => userList.Remove(user);
 
+        public User[] getUserList() { return userList.ToArray<User>(); }
+
         public User searchUser(User user)
         {
             if (!userList.Contains(user))

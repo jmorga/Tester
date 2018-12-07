@@ -16,27 +16,39 @@ namespace Tester
         {
             LinkedList<User> user = new LinkedList<User>();
             LinkedList<Admin> admin = new LinkedList<Admin>();
-            string fileName = "saveSate.anus";
 
 
-            var ced = new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24);
+            user.AddFirst(new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24));
+            user.AddFirst(new User("Joseph", "Morga", "joey", "yo mom's boyfriend", 24));
+            user.AddFirst(new User("Brad", "Something", "Brady", "yo mom's boyfriend", 24));
 
-            Console.WriteLine();
+            User[] theList = user.ToArray<User>();
 
-            var toSave = JsonConvert.SerializeObject("json");
-
-            StreamWriter write = new StreamWriter(fileName, false);
-            write.WriteLine(toSave);
-            write.Close();
-
-            StreamReader read = new StreamReader(fileName);
-
-            var loadedUser = JsonConvert.DeserializeObject<string>(read.ReadLine());
-            read.Close();
+            for (int i = 0; i < theList.Length; i++)
+                Console.WriteLine($"{theList[i]}\n");
 
 
-            Console.WriteLine(loadedUser);
-            
+            //string fileName = "saveSate.anus";
+
+
+            //var ced = new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24);
+
+            //Console.WriteLine();
+
+            //var toSave = JsonConvert.SerializeObject("json");
+
+            //StreamWriter write = new StreamWriter(fileName, false);
+            //write.WriteLine(toSave);
+            //write.Close();
+
+            //StreamReader read = new StreamReader(fileName);
+
+            //var loadedUser = JsonConvert.DeserializeObject<string>(read.ReadLine());
+            //read.Close();
+
+
+            //Console.WriteLine(loadedUser);
+
 
             ////--------------Saving Data :3
 
