@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tester
 {
-    
-    class Movie : IComparable<Movie>
+    [Serializable()]
+    class Movie : IComparable<Movie>, ISerializable
     {
         private string Title;
-        private String Director;
+        private string Director;
         private int Length;
-        private String Genre;
-        private String Synopsis;
+        private string Genre;
+        private string Synopsis;
         private string ReleaseDate;
         private double Rating;
-        private String Image;
+        private string Image;
 
 
         public Movie()
@@ -41,6 +44,18 @@ namespace Tester
             ReleaseDate = releaseDate;
             Rating = rating;
             Image = image;
+        }
+
+        public Movie(SerializationInfo info, StreamingContext ctxt)
+        {
+            Title = (string)info.GetValue("title", typeof(string));
+            Director = (string)info.GetValue("director", typeof(string));
+            Length = (int)info.GetValue("length", typeof(int));
+            Genre = (string)info.GetValue("genre", typeof(string));
+            Synopsis = (string)info.GetValue("synopsis", typeof(string));
+            ReleaseDate = (string)info.GetValue("releaseDate", typeof(string));
+            Rating = (double)info.GetValue("rating", typeof(double));
+            Image = (string)info.GetValue("image", typeof(string));
         }
 
         public string getImage() => Image;
@@ -79,6 +94,18 @@ namespace Tester
         public override string ToString()
         {
             return $"Title: {this.Title}\nDirector: {this.Director}\nLength: {this.Length} Genre: {this.Genre}";
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("title", Title);
+            info.AddValue("director", Director);
+            info.AddValue("length", Length);
+            info.AddValue("genre", Genre);
+            info.AddValue("synopsis", Synopsis);
+            info.AddValue("releaseDate", ReleaseDate);
+            info.AddValue("rating", Rating);
+            info.AddValue("image", Image);
         }
     }
 }
