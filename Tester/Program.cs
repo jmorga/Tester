@@ -15,7 +15,6 @@ namespace Tester
         static void Main(string[] args)
         {
             string fileName = "saveState.dat";
-            string data = "Test mother fucker";
 
             var movie =  new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
 
