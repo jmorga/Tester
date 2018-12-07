@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tester
 {
+    
     class User : Person, IComparable<User>
     {
         private LinkedList<Movie> favoriteList;

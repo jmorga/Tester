@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tester
 {
+    [Serializable]
     class Admin : Person, IComparable<Admin>
     {
         private LinkedList<User> userList;
