@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.IO;
-using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tester
 {
@@ -14,48 +10,8 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            string fileName = "saveState.dat";
-            string data = "Test mother fucker";
-
-            var movie =  new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
-
-            //--------------Saving Data
-
-            Stream stream = File.Open(fileName, FileMode.Create);
-
-            BinaryFormatter format = new BinaryFormatter();
-
-            format.Serialize(stream, movie);
-
-            stream.Close();
-
-            //--------------getting data
-
-            Stream stream2 = File.Open(fileName, FileMode.Open);
-            BinaryFormatter format2 = new BinaryFormatter();
-
-            var loadedContent = (Movie)format2.Deserialize(stream2);
-
-            stream2.Close();
-
-            Console.WriteLine(loadedContent);
-
-            //StreamWriter write = new StreamWriter(fileName, false);
-            //write.WriteLine(toSave);
-            //write.Close();
-
-            //StreamReader read = new StreamReader(fileName);
-
-            //Movie loadedMovie = JsonConvert.DeserializeObject<Movie>(read.ReadLine());
-
-            //read.Close();
-
-            //Console.WriteLine(loadedMovie);
-
-
-
-            //var movie = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10 , "8=D");
-            //var movie2 = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
+            var movie = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10 , "8=D");
+            var movie2 = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
 
             //LinkedList<Movie> list = new LinkedList<Movie>();
             //list.AddFirst(movie);
@@ -95,7 +51,7 @@ namespace Tester
             //Console.WriteLine($"Contains jmorga: {list.Contains(new User("", "", "jmorga", "", 0))}");
             //Console.WriteLine($"Contains Ced: {list.Contains(new User("", "", "Ced", "", 0))}");
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
