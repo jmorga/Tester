@@ -13,6 +13,7 @@ namespace Tester
         private string username;
         private string password;
         private int age;
+        private string access;
 
         public Person()
         {

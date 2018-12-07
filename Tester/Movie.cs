@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieAppStart
+namespace Tester
 {
+    
     class Movie : IComparable<Movie>
     {
         private string Title;
