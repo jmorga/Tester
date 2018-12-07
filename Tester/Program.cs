@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tester
 {
@@ -12,41 +14,44 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            Person test = new Person("Cedric", "Miller", "YO MOMS BOYFRIEND", "uncleStepDad69", 12);
+            string fileName = "saveState.dat";
+            string data = "Test mother fucker";
 
-            //String test = "You have saved me";
+            var movie =  new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
 
+            //--------------Saving Data
 
-            String saveState = JsonConvert.SerializeObject(;
+            Stream stream = File.Open(fileName, FileMode.Create);
 
-            Console.Write(saveState);
-            Console.Read();
+            BinaryFormatter format = new BinaryFormatter();
 
-            //String path = @"C:\Users\Cedric Miller\Desktop\some.txt";
+            format.Serialize(stream, movie);
 
-            //Person deserializedProduct = JsonConvert.DeserializeObject<Person>(saveState);
+            stream.Close();
 
-            //if (File.Exists(path))
-            //{
-            //    File.Delete(path);
-            //    using (var tw = new StreamWriter(path, true))
-            //    {
-            //        tw.WriteLine(deserializedProduct);
-                    
-            //        tw.Close();
-            //    }
+            //--------------getting data
 
-            //}
+            Stream stream2 = File.Open(fileName, FileMode.Open);
+            BinaryFormatter format2 = new BinaryFormatter();
 
-            //else if (!(File.Exists(path)))
-            //{
-            //    //Directory.CreateDirectory(path);
-            //    using (var tw = new StreamWriter(path, true))
-            //    {
-            //        tw.WriteLine(deserializedProduct);
-            //        tw.Close();
-            //    }
-            //}
+            var loadedContent = (Movie)format2.Deserialize(stream2);
+
+            stream2.Close();
+
+            Console.WriteLine(loadedContent);
+
+            //StreamWriter write = new StreamWriter(fileName, false);
+            //write.WriteLine(toSave);
+            //write.Close();
+
+            //StreamReader read = new StreamReader(fileName);
+
+            //Movie loadedMovie = JsonConvert.DeserializeObject<Movie>(read.ReadLine());
+
+            //read.Close();
+
+            //Console.WriteLine(loadedMovie);
+
 
 
             //var movie = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10 , "8=D");
@@ -90,7 +95,7 @@ namespace Tester
             //Console.WriteLine($"Contains jmorga: {list.Contains(new User("", "", "jmorga", "", 0))}");
             //Console.WriteLine($"Contains Ced: {list.Contains(new User("", "", "Ced", "", 0))}");
 
-            //Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }
