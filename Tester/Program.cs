@@ -14,30 +14,50 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            string fileName = "saveState.dat";
+            LinkedList<User> user = new LinkedList<User>();
+            LinkedList<Admin> admin = new LinkedList<Admin>();
+            string fileName = "saveSate.anus";
 
-            var movie =  new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
 
-            //--------------Saving Data :3
+            var ced = new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24);
 
-            Stream stream = File.Open(fileName, FileMode.Create);
+            Console.WriteLine();
 
-            BinaryFormatter format = new BinaryFormatter();
+            var toSave = JsonConvert.SerializeObject("json");
 
-            format.Serialize(stream, movie);
+            StreamWriter write = new StreamWriter(fileName, false);
+            write.WriteLine(toSave);
+            write.Close();
 
-            stream.Close();
+            StreamReader read = new StreamReader(fileName);
 
-            //--------------getting data
+            var loadedUser = JsonConvert.DeserializeObject<string>(read.ReadLine());
+            read.Close();
 
-            Stream stream2 = File.Open(fileName, FileMode.Open);
-            BinaryFormatter format2 = new BinaryFormatter();
 
-            var loadedContent = (Movie)format2.Deserialize(stream2);
+            Console.WriteLine(loadedUser);
+            
 
-            stream2.Close();
+            ////--------------Saving Data :3
 
-            Console.WriteLine(loadedContent);
+            //Stream stream = File.Open(fileName, FileMode.Create);
+
+            //BinaryFormatter format = new BinaryFormatter();
+
+            //format.Serialize(stream, movie);
+
+            //stream.Close();
+
+            ////--------------getting data
+
+            //Stream stream2 = File.Open(fileName, FileMode.Open);
+            //BinaryFormatter format2 = new BinaryFormatter();
+
+            //var loadedContent = (Movie)format2.Deserialize(stream2);
+
+            //stream2.Close();
+
+            //Console.WriteLine(loadedContent);
 
             //StreamWriter write = new StreamWriter(fileName, false);
             //write.WriteLine(toSave);
