@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Tester
 {
@@ -10,14 +12,51 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            var movie = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10 , "8=D");
-            var movie2 = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
+            Person test = new Person("Cedric", "Miller", "YO MOMS BOYFRIEND", "uncleStepDad69", 12);
 
-            LinkedList<Movie> list = new LinkedList<Movie>();
-            list.AddFirst(movie);
+            //String test = "You have saved me";
 
-            Console.WriteLine(movie.ToString());
-            Console.WriteLine($"\nContains: {list.Contains(new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D"))}");
+
+            String saveState = JsonConvert.SerializeObject(;
+
+            Console.Write(saveState);
+            Console.Read();
+
+            //String path = @"C:\Users\Cedric Miller\Desktop\some.txt";
+
+            //Person deserializedProduct = JsonConvert.DeserializeObject<Person>(saveState);
+
+            //if (File.Exists(path))
+            //{
+            //    File.Delete(path);
+            //    using (var tw = new StreamWriter(path, true))
+            //    {
+            //        tw.WriteLine(deserializedProduct);
+                    
+            //        tw.Close();
+            //    }
+
+            //}
+
+            //else if (!(File.Exists(path)))
+            //{
+            //    //Directory.CreateDirectory(path);
+            //    using (var tw = new StreamWriter(path, true))
+            //    {
+            //        tw.WriteLine(deserializedProduct);
+            //        tw.Close();
+            //    }
+            //}
+
+
+            //var movie = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10 , "8=D");
+            //var movie2 = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
+
+            //LinkedList<Movie> list = new LinkedList<Movie>();
+            //list.AddFirst(movie);
+
+            //Console.WriteLine(movie.ToString());
+            //Console.WriteLine($"\nContains: {list.Contains(new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D"))}");
 
 
 
@@ -51,7 +90,7 @@ namespace Tester
             //Console.WriteLine($"Contains jmorga: {list.Contains(new User("", "", "jmorga", "", 0))}");
             //Console.WriteLine($"Contains Ced: {list.Contains(new User("", "", "Ced", "", 0))}");
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
