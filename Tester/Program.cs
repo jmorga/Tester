@@ -14,41 +14,39 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            LinkedList<User> user = new LinkedList<User>();
-            LinkedList<Admin> admin = new LinkedList<Admin>();
+            //LinkedList<User> user = new LinkedList<User>();
+            //LinkedList<Admin> admin = new LinkedList<Admin>();
+            LinkedList<Movie> movie = new LinkedList<Movie>();
 
 
-            user.AddFirst(new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24));
-            user.AddFirst(new User("Joseph", "Morga", "joey", "yo mom's boyfriend", 24));
-            user.AddFirst(new User("Brad", "Something", "Brady", "yo mom's boyfriend", 24));
+            var mov = new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D");
 
-            User[] theList = user.ToArray<User>();
+            string fileName = "saveSate.anus";
+
+
+            var ced = new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24);
+
+            ced.addMovie(new Movie("Two Girls One Cup", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D"));
+            ced.addMovie(new Movie("Yo mama", "Cedric", 30, "Educational", "Very educational", "Now", 10, "8=D"));
+
+
+            var toSave = JsonConvert.SerializeObject(ced);
+
+            StreamWriter write = new StreamWriter(fileName, false);
+            write.WriteLine(toSave);
+            write.Close();
+
+            StreamReader read = new StreamReader(fileName);
+
+            var loadedUser = JsonConvert.DeserializeObject<User>(read.ReadLine());
+            read.Close();
+
+            Console.WriteLine(loadedUser + "\n");
+
+            Movie[] theList = loadedUser.getMovieList().ToArray<Movie>();
 
             for (int i = 0; i < theList.Length; i++)
-                Console.WriteLine($"{theList[i]}\n");
-
-
-            //string fileName = "saveSate.anus";
-
-
-            //var ced = new User("Cedric", "Miller", "Ceddy", "yo mom's boyfriend", 24);
-
-            //Console.WriteLine();
-
-            //var toSave = JsonConvert.SerializeObject("json");
-
-            //StreamWriter write = new StreamWriter(fileName, false);
-            //write.WriteLine(toSave);
-            //write.Close();
-
-            //StreamReader read = new StreamReader(fileName);
-
-            //var loadedUser = JsonConvert.DeserializeObject<string>(read.ReadLine());
-            //read.Close();
-
-
-            //Console.WriteLine(loadedUser);
-
+                Console.WriteLine(theList[i] + "\n");
 
             ////--------------Saving Data :3
 

@@ -9,17 +9,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tester
 {
-    [Serializable()]
-    class Movie : IComparable<Movie>, ISerializable
+    class Movie : IComparable<Movie>
     {
-        private string Title;
-        private string Director;
-        private int Length;
-        private string Genre;
-        private string Synopsis;
-        private string ReleaseDate;
-        private double Rating;
-        private string Image;
+        public string Title { get; set; }
+        public string Director { get; set; }
+        public int Length { get; set; }
+        public string Genre { get; set; }
+        public string Synopsis { get; set; }
+        public string ReleaseDate { get; set; }
+        public double Rating { get; set; }
+        public string Image { get; set; }
 
 
         public Movie()
@@ -45,27 +44,14 @@ namespace Tester
             Rating = rating;
             Image = image;
         }
-
-        public Movie(SerializationInfo info, StreamingContext ctxt)
-        {
-            Title = (string)info.GetValue("title", typeof(string));
-            Director = (string)info.GetValue("director", typeof(string));
-            Length = (int)info.GetValue("length", typeof(int));
-            Genre = (string)info.GetValue("genre", typeof(string));
-            Synopsis = (string)info.GetValue("synopsis", typeof(string));
-            ReleaseDate = (string)info.GetValue("releaseDate", typeof(string));
-            Rating = (double)info.GetValue("rating", typeof(double));
-            Image = (string)info.GetValue("image", typeof(string));
-        }
-
-        public string getImage() => Image;
-        public string getTitle() => Title;
-        public int getLength() => Length;
-        public string getDirector() => Director;
-        public string getGenre() => Genre;
-        public string getSynopsis() => Synopsis;
-        public string getReleaseDate() => ReleaseDate;
-        public double getRating() => Rating;
+        //public string getImage() => Image;
+        //public string getTitle() => Title;
+        //public int getLength() => Length;
+        //public string getDirector() => Director;
+        //public string getGenre() => Genre;
+        //public string getSynopsis() => Synopsis;
+        //public string getReleaseDate() => ReleaseDate;
+        //public double getRating() => Rating;
 
         public int CompareTo(Movie obj)
         {
@@ -94,18 +80,6 @@ namespace Tester
         public override string ToString()
         {
             return $"Title: {this.Title}\nDirector: {this.Director}\nLength: {this.Length} Genre: {this.Genre}";
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("title", Title);
-            info.AddValue("director", Director);
-            info.AddValue("length", Length);
-            info.AddValue("genre", Genre);
-            info.AddValue("synopsis", Synopsis);
-            info.AddValue("releaseDate", ReleaseDate);
-            info.AddValue("rating", Rating);
-            info.AddValue("image", Image);
         }
     }
 }

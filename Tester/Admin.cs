@@ -9,10 +9,11 @@ using Newtonsoft.Json;
 
 namespace Tester
 {
-    [Serializable]
+    
     class Admin : Person, IComparable<Admin>
     {
-        private LinkedList<User> userList;
+        [JsonProperty("list")]
+        public LinkedList<User> userList { get; set; }
 
         public Admin() : base()
         {
@@ -30,7 +31,7 @@ namespace Tester
             if (obj == null)
                 return 1;
 
-            return this.getUsername().CompareTo(obj.getUsername());
+            return this.username.CompareTo(obj.username);
         }
 
         public void setList(LinkedList<User> list) { this.userList = list; }

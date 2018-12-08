@@ -8,12 +8,11 @@ namespace Tester
 {
     class Person
     {
-        private string firstName;
-        private string lastName;
-        private string username;
-        private string password;
-        private int age;
-        private string access;
+        public string firstName { get; set; }
+        public  string lastName { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public int age { get; set; }
 
         public Person()
         {
@@ -35,26 +34,26 @@ namespace Tester
 
         // ------- Mutator Mathods ------
 
-        public void setFirstName(string firstName) { this.firstName = firstName; }
-        public void setLastName(string lastName) { this.lastName = lastName; }
-        public void setUsername(string username) { this.username = username; }
-        public void setPassword(string password) { this.password = password; }
-        public void setAge(int age) { this.age = age; }
+        //public void setFirstName(string firstName) { this.firstName = firstName; }
+        //public void setLastName(string lastName) { this.lastName = lastName; }
+        //public void setUsername(string username) { this.username = username; }
+        //public void setPassword(string password) { this.password = password; }
+        //public void setAge(int age) { this.age = age; }
 
-        //------- Accessor Mathods ------
+        ////------- Accessor Mathods ------
 
-        public string getFirstName() => firstName;
-        public string getLastName() => lastName;
-        public string getPassword() => password;
-        public string getUsername() => username;
-        public int getAge() => age;
+        //public string getFirstName() => firstName;
+        //public string getLastName() => lastName;
+        //public string getPassword() => password;
+        //public string getUsername() => username;
+        //public int getAge() => age;
 
 
-        public override bool Equals(Object obj)
+        public  bool Equals(Person obj)
         {
             if (obj == null) return false;
 
-            return this.username.Equals(((User)obj).getUsername());
+            return this.username.Equals(((Person)obj).username);
         }
 
         public override int GetHashCode()
@@ -64,7 +63,7 @@ namespace Tester
 
         public override string ToString()
         {
-            return $"Name: {this.getFirstName()} {this.getLastName()}\nUsername: {this.getUsername()}\nPassword: {this.getPassword()}\nAge: {this.getAge()}";
+            return $"Name: {this.firstName} {this.lastName}\nUsername: {this.username}\nPassword: {this.password}\nAge: {this.age}";
         }
     }
 }
