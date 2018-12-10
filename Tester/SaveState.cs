@@ -4,80 +4,67 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 using System.IO;
-using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tester
 {
     public class SaveState
     {
-        private string fileName = "fileState.anus";
+        private string fileName;
         private Data loadedContent;
 
         public SaveState()
         {
-            try
-            {
-                Stream stream = File.Open(fileName, FileMode.Open);
-                BinaryFormatter format = new BinaryFormatter();
+            fileName = "saveState.dat";
 
-                var loadedContent = (Data)format.Deserialize(stream);
-
-                stream.Close();
-            }
-            catch (FileNotFoundException e) { }
+            //Open file
+            
+            loadedContent = null; // load the contents here
         }
 
-        public void saveData(object user, object admin)
+        public SaveState(string fileName)
         {
-            Stream stream = File.Open(fileName, FileMode.Create);
-            BinaryFormatter format = new BinaryFormatter();
+            this.fileName = fileName;
 
-            format.Serialize(stream, new Data((LinkedList<User>)user, (LinkedList<Admin>)admin));
+            //open file
 
-            stream.Close();
+            loadedContent = null; // load the contents here
         }
 
-        public void loadData(object user, object admin)
+        //Retruns true if data saved successfully, false otherwise
+        public bool saveData(object user, object admin)
         {
-            user = this.loadedContent.getData1();
-            admin = this.loadedContent.getData2();
+            Data toSave = new Data((LinkedList<User>)user, (LinkedList<Admin>)admin);
+
+            //Save toSave in file
+
+            return true;
         }
 
-        [Serializable()]
-        private class Data : ISerializable
+        //Returns user list as type object, must typecast back to LinkedList<User>
+        public object getUserList()
         {
-            private LinkedList<User> data1;
-            private LinkedList<Admin> data2;
+            return loadedContent.userList;
+        }
 
-            public Data(LinkedList<User> data1, LinkedList<Admin> data2)
+        //Returns admin list as type object, must typecast back to LinkedList<Admin>
+        public object getAdminList()
+        {
+            return loadedContent.adminList;
+        }
+
+        private class Data
+        {
+            [JsonProperty("masterUserList")]
+            public LinkedList<User> userList { get; set; }
+            [JsonProperty("masterAdminList")]
+            public LinkedList<Admin> adminList { get; set; }
+
+            public Data(LinkedList<User> userList, LinkedList<Admin> adminList)
             {
-                this.data1 = data1;
-                this.data2 = data2;
-            }
-
-            public Data()
-            {
-                this.data1 = null;
-                this.data2 = null;
-            }
-
-            public Data(SerializationInfo info, StreamingContext ctxt)
-            { 
-                this.data1 = (LinkedList<User>)info.GetValue("data1", typeof(LinkedList<User>));
-                this.data2 = (LinkedList<Admin>)info.GetValue("data2", typeof(LinkedList<Admin>));
-            }
-
-            public LinkedList<User> getData1() => data1;
-
-            public LinkedList<Admin> getData2() => data2;
-
-            public void GetObjectData(SerializationInfo info, StreamingContext context)
-            {
-                info.AddValue("data1", this.data1);
-                info.AddValue("data2", this.data2);
+                this.userList = userList;
+                this.adminList = adminList;
             }
         }
 
