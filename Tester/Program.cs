@@ -14,7 +14,25 @@ namespace Tester
     {
         static void Main(string[] args)
         {
-            //Work on driver to test SaveState
+            var name = "saveSate.anus";
+
+            StreamReader read = null;
+            try
+            {
+                read = new StreamReader(name);
+            }
+            catch(FileNotFoundException e)
+            {
+            }
+
+            User ced = JsonConvert.DeserializeObject<User>(read.ReadLine());
+
+            read.Close();
+
+            Console.WriteLine(ced);
+
+
+
 
             Console.ReadLine();
         }
