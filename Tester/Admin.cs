@@ -30,7 +30,7 @@ namespace Tester
             if (obj == null)
                 return 1;
 
-            return this.getUsername().CompareTo(obj.getUsername());
+            return this.username.CompareTo(obj.username);
         }
 
         public void setList(LinkedList<User> list) { this.userList = list; }

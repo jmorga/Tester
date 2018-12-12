@@ -10,7 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Tester
 {
     [Serializable()]
-    class Movie : IComparable<Movie>, ISerializable
+    class Movie : IComparable<Movie>
     {
         private string Title;
         private string Director;
@@ -46,17 +46,7 @@ namespace Tester
             Image = image;
         }
 
-        public Movie(SerializationInfo info, StreamingContext ctxt)
-        {
-            Title = (string)info.GetValue("title", typeof(string));
-            Director = (string)info.GetValue("director", typeof(string));
-            Length = (int)info.GetValue("length", typeof(int));
-            Genre = (string)info.GetValue("genre", typeof(string));
-            Synopsis = (string)info.GetValue("synopsis", typeof(string));
-            ReleaseDate = (string)info.GetValue("releaseDate", typeof(string));
-            Rating = (double)info.GetValue("rating", typeof(double));
-            Image = (string)info.GetValue("image", typeof(string));
-        }
+        
 
         public string getImage() => Image;
         public string getTitle() => Title;
@@ -96,16 +86,6 @@ namespace Tester
             return $"Title: {this.Title}\nDirector: {this.Director}\nLength: {this.Length} Genre: {this.Genre}";
         }
 
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("title", Title);
-            info.AddValue("director", Director);
-            info.AddValue("length", Length);
-            info.AddValue("genre", Genre);
-            info.AddValue("synopsis", Synopsis);
-            info.AddValue("releaseDate", ReleaseDate);
-            info.AddValue("rating", Rating);
-            info.AddValue("image", Image);
-        }
+       
     }
 }

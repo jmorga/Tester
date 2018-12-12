@@ -9,8 +9,8 @@ namespace Tester
     
     class User : Person, IComparable<User>
     {
-        private LinkedList<Movie> favoriteList;
-        private bool banned;
+        public LinkedList<Movie> favoriteList { get; set; }
+        public bool banned { get; set; }
 
         public User() : base()
         {
@@ -52,7 +52,7 @@ namespace Tester
             if (obj == null)
                 return 1;
 
-            return this.getUsername().CompareTo(obj.getUsername());
+            return this.username.CompareTo(obj.username);
         }
 
         public void setBan(bool ban) { this.banned = ban;  }

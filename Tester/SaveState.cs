@@ -4,12 +4,50 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
+using Newtonsoft.Json.Converters;
 
 namespace Tester
 {
     public class SaveState
     {
-        
+
+        public void SaveData(object userlist, object adminList)
+        {
+             
+            Data data = new Data((LinkedList<User>)userlist,(LinkedList<Admin>) adminList);
+
+            var saveState = JsonConvert.SerializeObject(data);
+
+            Person deserializedProduct = JsonConvert.DeserializeObject<Person>(saveState);
+
+            String path = "some.txt";
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+                using (var tw = new StreamWriter(path, true))
+                {
+                    tw.WriteLine(deserializedProduct);
+
+                    tw.Close();
+                }
+
+            }
+
+            else if (!(File.Exists(path)))
+            {
+                using (var tw = new StreamWriter(path, true))
+                {
+                    tw.WriteLine(deserializedProduct);
+                    tw.Close();
+                }
+            }
+
+
+
+        }
 
         private class Data
         {
