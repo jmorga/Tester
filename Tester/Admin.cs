@@ -9,10 +9,11 @@ using Newtonsoft.Json;
 
 namespace Tester
 {
-    [Serializable]
+    
     class Admin : Person, IComparable<Admin>
     {
-        private LinkedList<User> userList;
+        [JsonProperty("list")]
+        public LinkedList<User> userList { get; set; }
 
         public Admin() : base()
         {
@@ -45,6 +46,8 @@ namespace Tester
         }
 
         public bool deleteUser(User user) => userList.Remove(user);
+
+        public User[] getUserList() { return userList.ToArray<User>(); }
 
         public User searchUser(User user)
         {

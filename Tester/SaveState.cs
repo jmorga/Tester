@@ -6,70 +6,66 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
-using Newtonsoft.Json.Converters;
 
 namespace Tester
 {
     public class SaveState
     {
+        private string fileName;
+        private Data loadedContent;
 
-        public void SaveData(object userlist, object adminList)
+        public SaveState()
         {
-             
-            Data data = new Data((LinkedList<User>)userlist,(LinkedList<Admin>) adminList);
+            fileName = "saveState.dat";
 
-            var saveState = JsonConvert.SerializeObject(data);
+            //Open file
+            
+            loadedContent = null; // load the contents here
+        }
 
-            Person deserializedProduct = JsonConvert.DeserializeObject<Person>(saveState);
+        public SaveState(string fileName)
+        {
+            this.fileName = fileName;
 
-            String path = "some.txt";
+            //open file
 
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-                using (var tw = new StreamWriter(path, true))
-                {
-                    tw.WriteLine(deserializedProduct);
+            loadedContent = null; // load the contents here
+        }
 
-                    tw.Close();
-                }
+        //Retruns true if data saved successfully, false otherwise
+        public bool saveData(object user, object admin)
+        {
+            Data toSave = new Data((LinkedList<User>)user, (LinkedList<Admin>)admin);
 
-            }
+            //Save toSave in file
 
-            else if (!(File.Exists(path)))
-            {
-                using (var tw = new StreamWriter(path, true))
-                {
-                    tw.WriteLine(deserializedProduct);
-                    tw.Close();
-                }
-            }
+            return true;
+        }
 
+        //Returns user list as type object, must typecast back to LinkedList<User>
+        public object getUserList()
+        {
+            return loadedContent.userList;
+        }
 
-
+        //Returns admin list as type object, must typecast back to LinkedList<Admin>
+        public object getAdminList()
+        {
+            return loadedContent.adminList;
         }
 
         private class Data
         {
-            private LinkedList<User> data1;
-            private LinkedList<Admin> data2;
+            [JsonProperty("masterUserList")]
+            public LinkedList<User> userList { get; set; }
+            [JsonProperty("masterAdminList")]
+            public LinkedList<Admin> adminList { get; set; }
 
-            public Data(LinkedList<User> data1, LinkedList<Admin> data2)
+            public Data(LinkedList<User> userList, LinkedList<Admin> adminList)
             {
-                this.data1 = data1;
-                this.data2 = data2;
+                this.userList = userList;
+                this.adminList = adminList;
             }
-
-            public Data()
-            {
-                this.data1 = null;
-                this.data2 = null;
-            }
-
-            public LinkedList<User> getData1() => data1;
-
-            public LinkedList<Admin> getData2() => data2;
-
         }
 
     }

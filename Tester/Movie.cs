@@ -9,17 +9,16 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tester
 {
-    [Serializable()]
     class Movie : IComparable<Movie>
     {
-        private string Title;
-        private string Director;
-        private int Length;
-        private string Genre;
-        private string Synopsis;
-        private string ReleaseDate;
-        private double Rating;
-        private string Image;
+        public string Title { get; set; }
+        public string Director { get; set; }
+        public int Length { get; set; }
+        public string Genre { get; set; }
+        public string Synopsis { get; set; }
+        public string ReleaseDate { get; set; }
+        public double Rating { get; set; }
+        public string Image { get; set; }
 
 
         public Movie()
@@ -45,17 +44,14 @@ namespace Tester
             Rating = rating;
             Image = image;
         }
-
-        
-
-        public string getImage() => Image;
-        public string getTitle() => Title;
-        public int getLength() => Length;
-        public string getDirector() => Director;
-        public string getGenre() => Genre;
-        public string getSynopsis() => Synopsis;
-        public string getReleaseDate() => ReleaseDate;
-        public double getRating() => Rating;
+        //public string getImage() => Image;
+        //public string getTitle() => Title;
+        //public int getLength() => Length;
+        //public string getDirector() => Director;
+        //public string getGenre() => Genre;
+        //public string getSynopsis() => Synopsis;
+        //public string getReleaseDate() => ReleaseDate;
+        //public double getRating() => Rating;
 
         public int CompareTo(Movie obj)
         {
@@ -85,7 +81,5 @@ namespace Tester
         {
             return $"Title: {this.Title}\nDirector: {this.Director}\nLength: {this.Length} Genre: {this.Genre}";
         }
-
-       
     }
 }

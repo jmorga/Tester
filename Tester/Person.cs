@@ -9,11 +9,10 @@ namespace Tester
     class Person
     {
         public string firstName { get; set; }
-        public string lastName { get; set; }
+        public  string lastName { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public int age { get; set; }
-        public string access { get; set; }
 
         public Person()
         {
@@ -33,12 +32,28 @@ namespace Tester
             this.age = age;
         }
 
-       
-        public bool Equals(Person obj)
+        // ------- Mutator Mathods ------
+
+        //public void setFirstName(string firstName) { this.firstName = firstName; }
+        //public void setLastName(string lastName) { this.lastName = lastName; }
+        //public void setUsername(string username) { this.username = username; }
+        //public void setPassword(string password) { this.password = password; }
+        //public void setAge(int age) { this.age = age; }
+
+        ////------- Accessor Mathods ------
+
+        //public string getFirstName() => firstName;
+        //public string getLastName() => lastName;
+        //public string getPassword() => password;
+        //public string getUsername() => username;
+        //public int getAge() => age;
+
+
+        public  bool Equals(Person obj)
         {
             if (obj == null) return false;
 
-            return this.username.Equals((obj).username);
+            return this.username.Equals(((Person)obj).username);
         }
 
         public override int GetHashCode()
