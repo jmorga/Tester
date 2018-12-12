@@ -18,7 +18,7 @@ namespace Tester
         {
             fileName = "saveState.dat";
 
-            //Open file
+            
             
             loadedContent = null; // load the contents here
         }

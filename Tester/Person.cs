@@ -49,18 +49,17 @@ namespace Tester
         //public int getAge() => age;
 
 
-        public  bool Equals(Person obj)
+        public override bool Equals(object obj)
         {
             if (obj == null) return false;
 
-            return this.username.Equals(((Person)obj).username);
+            return this.username.Equals(((Person)obj).username) && this.password.Equals(((Person)obj).password);
         }
 
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
-
         public override string ToString()
         {
             return $"Name: {this.firstName} {this.lastName}\nUsername: {this.username}\nPassword: {this.password}\nAge: {this.age}";
