@@ -55,16 +55,16 @@ namespace Tester
 
             save.loadData();
 
-            //LinkedList<User> loadedUser = (LinkedList<User>)save.getUserList();
-            //LinkedList<Admin> loadedAdmin = (LinkedList<Admin>)save.getAdminList();
+            LinkedList<User> loadedUser = (LinkedList<User>)save.getUserList();
+            LinkedList<Admin> loadedAdmin = (LinkedList<Admin>)save.getAdminList();
 
-            //User[] x = loadedUser.ToArray<User>();
-
-            //for (int i = 0; i < max; i++)
-            //{
-            //    Console.WriteLine(loadedUser.Contains(new User($"{9 - i}", $"{9 - i}", $"{9 - i}", $"{9 - i}",9-i)));
-            //}
             
+
+            for (int i = 0; i < max; i++)
+            {
+                Console.WriteLine(loadedUser.Contains(new User($"{9 - i}", $"{9 - i}", $"{9 - i}", $"{9 - i}", 9 - i)));
+            }
+
 
             Console.ReadLine();
         }

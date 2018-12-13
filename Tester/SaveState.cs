@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.IO;
 
 namespace Tester
 {
@@ -25,9 +24,11 @@ namespace Tester
             //Open file
 
             StreamReader readData = null;
+            FileStream stream = null;
             try
             {
-                readData = new StreamReader(fileName);
+                stream = new FileStream(fileName, FileMode.Open);
+                readData = new StreamReader(stream);
                 savedData   = readData.ReadToEnd();
                 readData.Close();
             }
@@ -51,9 +52,11 @@ namespace Tester
             //Open file
 
             StreamReader readData = null;
+            FileStream stream = null;
             try
             {
-                readData = new StreamReader(fileName);
+                stream = new FileStream(fileName, FileMode.Open);
+                readData = new StreamReader(stream);
                 savedData = readData.ReadToEnd();
                 readData.Close();
             }
@@ -75,9 +78,11 @@ namespace Tester
             //Open file
 
             StreamReader readData = null;
+            FileStream stream = null;
             try
             {
-                readData = new StreamReader(fileName);
+                stream = new FileStream(fileName, FileMode.Open);
+                readData = new StreamReader(stream);
                 savedData = readData.ReadToEnd();
                 readData.Close();
             }
@@ -98,24 +103,15 @@ namespace Tester
 
             Data toSave = new Data((LinkedList<User>)user, (LinkedList<Admin>)admin);
 
-            //Save toSave in file
-
-            //Console.WriteLine(list.Contains(test1));
-            //Console.Read();
-
-            var saveState = JsonConvert.SerializeObject(toSave);
-
-
-            //For loading data
-            //LinkedList<User> deserializedProduct = JsonConvert.DeserializeObject<LinkedList<User>>(saveState);
-
-            //Console.Write(deserializedProduct);
-            //Console.Read();
+            var saveState = JsonConvert.SerializeObject(toSave, Formatting.None, new JsonSerializerSettings()
+                                                       { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
             if (File.Exists(fileName))
             {
+
                 File.Delete(fileName);
-                using (var tw = new StreamWriter(fileName, false))
+                FileStream stream = new FileStream(fileName, FileMode.CreateNew);
+                using (var tw = new StreamWriter(stream))
                 {
                     tw.WriteLine(saveState);
 
@@ -126,7 +122,8 @@ namespace Tester
 
             else if (!(File.Exists(fileName)))
             {
-                using (var tw = new StreamWriter(fileName, false))
+                FileStream stream = new FileStream(fileName, FileMode.CreateNew);
+                using (var tw = new StreamWriter(stream))
                 {
                     tw.WriteLine(saveState);
                     tw.Close();

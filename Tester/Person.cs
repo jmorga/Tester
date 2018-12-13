@@ -49,18 +49,13 @@ namespace Tester
         //public int getAge() => age;
 
 
-        public bool Equals(Person obj)
-        {
-            if (obj == null) return false;
-
-            return this.username.Equals(obj.username) && this.password.Equals(obj.password);
-        }
-
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
+            var otherPerson = obj as Person;
 
-            return this.username.Equals(((Person)obj).username) && this.password.Equals(((Person)obj).password);
+            return otherPerson == null ? false : (this.username.Equals(otherPerson.username) && this.password.Equals(otherPerson.password));
+
+            //return this.username.Equals(obj.username) && this.password.Equals(obj.password);
         }
 
         public override int GetHashCode()

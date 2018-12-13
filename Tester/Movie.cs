@@ -63,13 +63,14 @@ namespace Tester
 
         public override bool Equals(object obj)
         {
-            if (obj == null) return false;
 
-            if (this.Title.Equals(((Movie)obj).Title) && this.Director.Equals(((Movie)obj).Director)
-                && this.Length == ((Movie)obj).Length && this.Genre.Equals(((Movie)obj).Genre)
-                && this.ReleaseDate.Equals(((Movie)obj).ReleaseDate)) return true;
+            var otherMovie = obj as Movie;
 
-            return false;
+            return otherMovie == null ? false : this.Title.Equals(otherMovie.Title) &&
+                                                this.Director.Equals(otherMovie.Director) &&
+                                                this.Length.Equals(otherMovie.Length) &&
+                                                this.Genre.Equals(otherMovie.Genre) &&
+                                                this.ReleaseDate.Equals(otherMovie.ReleaseDate);
         }
 
         public override int GetHashCode()
