@@ -60,5 +60,7 @@ namespace Tester
         }
 
         public void setBan(bool ban) { this.banned = ban;  }
+
+        
     }
 }

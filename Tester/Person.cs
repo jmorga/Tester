@@ -49,6 +49,13 @@ namespace Tester
         //public int getAge() => age;
 
 
+        public bool Equals(Person obj)
+        {
+            if (obj == null) return false;
+
+            return this.username.Equals(obj.username) && this.password.Equals(obj.password);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

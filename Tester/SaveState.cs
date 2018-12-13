@@ -20,35 +20,7 @@ namespace Tester
             
             fileName = "saveState.dat";
             String savedData = "";
-
-
-            //Open file
-
-            StreamReader readData = null;
-            try
-            {
-              readData = new StreamReader(fileName);
-              savedData   = readData.ReadLine();
-            }
-            catch (FileNotFoundException e)
-            {
-
-              throw new FileNotFoundException("File is not found");
-            }
-
-
-            loadedContent = JsonConvert.DeserializeObject<Data>(savedData); // load the contents here
-
-            
-
-        }
-
-        public SaveState(string fileName)
-        {
-            this.fileName = fileName;
-
-            String savedData = "";
-
+            bool fileFound = true;
 
             //Open file
 
@@ -56,23 +28,74 @@ namespace Tester
             try
             {
                 readData = new StreamReader(fileName);
-                savedData = readData.ReadLine();
+                savedData   = readData.ReadToEnd();
+                readData.Close();
             }
             catch (FileNotFoundException e)
             {
-
-                throw new FileNotFoundException("File is not found");
+                loadedContent = null;
+                fileFound = false;
             }
 
+            if(fileFound)
+                loadedContent = JsonConvert.DeserializeObject<Data>(savedData); // load the contents here
+            
+        }
 
-            loadedContent = JsonConvert.DeserializeObject<Data>(savedData); // load the contents here
+        public SaveState(string fileName)
+        {
+            this.fileName = fileName;
+            String savedData = "";
+            bool fileFound = true;
 
+            //Open file
 
+            StreamReader readData = null;
+            try
+            {
+                readData = new StreamReader(fileName);
+                savedData = readData.ReadToEnd();
+                readData.Close();
+            }
+            catch (FileNotFoundException e)
+            {
+                loadedContent = null;
+                fileFound = false;
+            }
+
+            if (fileFound)
+                loadedContent = JsonConvert.DeserializeObject<Data>(savedData); // load the contents here
+            
+        }
+
+        public void loadData()
+        {
+            bool fileFound = true;
+            String savedData = "";
+            //Open file
+
+            StreamReader readData = null;
+            try
+            {
+                readData = new StreamReader(fileName);
+                savedData = readData.ReadToEnd();
+                readData.Close();
+            }
+            catch (FileNotFoundException e)
+            {
+                loadedContent = null;
+                fileFound = false;
+            }
+
+            if (fileFound)
+                loadedContent = JsonConvert.DeserializeObject<Data>(savedData); // load the contents here
         }
 
         //Retruns true if data saved successfully, false otherwise
         public bool saveData(object user, object admin)
         {
+            
+
             Data toSave = new Data((LinkedList<User>)user, (LinkedList<Admin>)admin);
 
             //Save toSave in file
@@ -116,12 +139,16 @@ namespace Tester
         //Returns user list as type object, must typecast back to LinkedList<User>
         public object getUserList()
         {
+            if (loadedContent == null) return null;
+
             return loadedContent.userList;
         }
 
         //Returns admin list as type object, must typecast back to LinkedList<Admin>
         public object getAdminList()
         {
+            if (loadedContent == null) return null;
+
             return loadedContent.adminList;
         }
 
