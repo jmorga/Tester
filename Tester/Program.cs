@@ -16,7 +16,7 @@ namespace Tester
 
         static void Main(string[] args)
         {
-            SaveState save = new SaveState();
+            SaveState save = new SaveState("file.monkey");
 
             LinkedList<User> userList = new LinkedList<User>();
             LinkedList<Admin> adminList = new LinkedList<Admin>();

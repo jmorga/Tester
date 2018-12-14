@@ -106,6 +106,8 @@ namespace Tester
             var saveState = JsonConvert.SerializeObject(toSave, Formatting.None, new JsonSerializerSettings()
                                                        { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
 
+
+
             if (File.Exists(fileName))
             {
 
