@@ -30,7 +30,7 @@ namespace Tester
                 stream = new FileStream(fileName, FileMode.Open);
                 readData = new StreamReader(stream);
                 savedData   = readData.ReadToEnd();
-                readData.Close();
+                readData.Dispose();
             }
             catch (FileNotFoundException e)
             {
@@ -58,7 +58,7 @@ namespace Tester
                 stream = new FileStream(fileName, FileMode.Open);
                 readData = new StreamReader(stream);
                 savedData = readData.ReadToEnd();
-                readData.Close();
+                readData.Dispose();
             }
             catch (FileNotFoundException e)
             {
@@ -84,7 +84,7 @@ namespace Tester
                 stream = new FileStream(fileName, FileMode.Open);
                 readData = new StreamReader(stream);
                 savedData = readData.ReadToEnd();
-                readData.Close();
+                readData.Dispose();
             }
             catch (FileNotFoundException e)
             {
@@ -115,7 +115,7 @@ namespace Tester
                 {
                     tw.WriteLine(saveState);
 
-                    tw.Close();
+                    tw.Dispose();
                 }
 
             }
@@ -126,7 +126,7 @@ namespace Tester
                 using (var tw = new StreamWriter(stream))
                 {
                     tw.WriteLine(saveState);
-                    tw.Close();
+                    tw.Dispose();
                 }
             }
 
